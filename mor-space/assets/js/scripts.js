@@ -441,7 +441,7 @@ if( window.navigator.userAgent.toLowerCase().indexOf("msie ") > -1 || !!navigato
 		$img.removeClass('hide');
 	});
 	galleryTabsSwiper();
-	function galleryTabsSwiper(){
+	function galleryTabsSwiper( startIndex = 0 ) {
 		document.querySelectorAll('.multi-tabs-swipers').length && (function() {
 			document.querySelectorAll('.multi-tabs-swipers').forEach(function(e,i) {
 				let galleryThumbs = new Swiper(e.querySelector('.multi-tabs-swipers-thumbs'), {
@@ -480,6 +480,7 @@ if( window.navigator.userAgent.toLowerCase().indexOf("msie ") > -1 || !!navigato
 											}
 				});
 				let galleryTop = new Swiper(e.querySelector('.multi-tabs-swipers-content'), {
+					initialSlide		: startIndex,
 					speed				: 1000,
 					watchSlidesProgress	: true,
 					updateOnImagesReady	: true,
@@ -523,7 +524,8 @@ if( window.navigator.userAgent.toLowerCase().indexOf("msie ") > -1 || !!navigato
 		}());
 	}
 	function afterYboxOpen(self){
-		galleryTabsSwiper();
+		let index = self.attr('data-slide-index') ? parseInt(self.attr('data-slide-index')) : 0;
+		galleryTabsSwiper(index);
 	}
 	
 	// Waypoint Loader - Load More Articles
