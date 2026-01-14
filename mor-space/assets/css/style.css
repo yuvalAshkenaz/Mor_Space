@@ -1184,6 +1184,9 @@ body.mobile-menu-is-open .menu-icon-span3 {
 	margin: -webkit-calc(-15.5vw - 38px) 0 -webkit-calc(15.5vw + 38px) 0;
 	margin: calc(-15.5vw - 38px) 0 calc(15.5vw + 38px) 0;
 }
+.project-item:last-child {
+	margin-bottom: 0 !important;
+}
 .y-btn-wrap {
 	width: 100%;
 	padding: 45px 20px 0;
@@ -2630,7 +2633,7 @@ ul.breadcrumbs li:not(:first-child)::before,
 	width: -webkit-calc(50% - 15px);
 	width: calc(50% - 15px);
 }
-.contact-content-form-wrap .wpcf7-form-control-wrap:nth-child(5) {
+.contact-content-form-wrap .wpcf7-form-control-wrap.is-wide {
 	width: 100%;
 }
 .contact-content-form-wrap .wpcf7-form-control:not(.wpcf7-submit):not(.wpcf7-checkbox):not(.wpcf7-acceptance) {
