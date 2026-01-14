@@ -557,7 +557,7 @@ if( window.navigator.userAgent.toLowerCase().indexOf("msie ") > -1 || !!navigato
 		}
 		
 		//*****************************************************
-		return false; // למחוק את השורה הזאת כשבונים על המערכת
+		// return false; // למחוק את השורה הזאת כשבונים על המערכת
 		//*****************************************************
 		
 		let paged = 1;
@@ -571,9 +571,10 @@ if( window.navigator.userAgent.toLowerCase().indexOf("msie ") > -1 || !!navigato
 		window.articles_ajax = jQuery.ajax({
 			type	 : "post",
 			dataType : "json",
-			url		 : '',//site_settings.ajaxurl,
+			url		 : site_settings.ajaxurl,
 			data	 : {
 				action	 : "get_articles",
+				nonce 	 : site_settings.nonces.articles,
 				paged	 : paged,
 				ajax	 : true,
 				new_call : new_call,
@@ -632,10 +633,6 @@ if( window.navigator.userAgent.toLowerCase().indexOf("msie ") > -1 || !!navigato
 			jQuery('.projects-ajax-here').addClass('loading');
 		}
 		
-		//*****************************************************
-		return false; // למחוק את השורה הזאת כשבונים על המערכת
-		//*****************************************************
-		
 		let paged = 1;
 		let new_call = false;
 		if( obj && obj.paged ) {
@@ -647,9 +644,10 @@ if( window.navigator.userAgent.toLowerCase().indexOf("msie ") > -1 || !!navigato
 		window.projects_ajax = jQuery.ajax({
 			type	 : "post",
 			dataType : "json",
-			url		 : '',//site_settings.ajaxurl,
+			url		 : site_settings.ajaxurl,
 			data	 : {
 				action	 : "get_projects",
+				nonce 	 : site_settings.nonces.projects,
 				paged	 : paged,
 				ajax	 : true,
 				new_call : new_call,
@@ -733,10 +731,6 @@ if( window.navigator.userAgent.toLowerCase().indexOf("msie ") > -1 || !!navigato
 				jQuery('.categories-ajax-list').addClass('loading');
 		}
 		
-		//*****************************************************
-		return false; // למחוק את השורה הזאת כשבונים על המערכת
-		//*****************************************************
-		
 		let paged = 1;
 		if( obj && obj.paged ) {
 			paged = obj.paged;
@@ -744,9 +738,10 @@ if( window.navigator.userAgent.toLowerCase().indexOf("msie ") > -1 || !!navigato
 		window.categories_ajax = jQuery.ajax({
 			type	 : "post",
 			dataType : "json",
-			url		 : '', //site_settings.ajaxurl,
+			url		 : site_settings.ajaxurl,
 			data	 : {
-				action	 : "get_categories",
+				action	 : "get_my_categories",
+				nonce 	 : site_settings.nonces.categories,
 				paged	 : paged,
 				ajax	 : true,
 				new_call : new_call,
@@ -814,4 +809,11 @@ if( window.navigator.userAgent.toLowerCase().indexOf("msie ") > -1 || !!navigato
 			//$(this).valid();
 		});
 	});
+	// Add wide to fields parent
+	document.querySelectorAll('.wpcf7-form-control-wrap').forEach(wrap => {
+		if( wrap.querySelector('.wide') ) {
+			wrap.classList.add('is-wide');
+		}
+	});
+
 }
